@@ -1,7 +1,8 @@
 var webpack = require('webpack')
+var path = require('path')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-export default {
+module.exports = {
     entry: [
         './src/index.js'
     ],
