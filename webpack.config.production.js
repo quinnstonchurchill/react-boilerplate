@@ -13,7 +13,7 @@ module.exports = {
     },
     devtool: 'cheap-module-source-map',
     resolve: {
-        extensions: ['', '.jsx', '.js', '.less']
+        extensions: ['', '.jsx', '.js', '.less', '.jpg', '.jpeg', '.png']
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -29,7 +29,6 @@ module.exports = {
                 except: ['exports', 'require']
             },
             compressor: {
-                screw_ie_8: true,
                 warnings: false
             }
         })
@@ -47,21 +46,8 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.global\.less$/,
-                loaders: [
-                    'style-loader',
-                    'css-loader?sourceMap',
-                    'less-loader'
-                ],
-                exclude: /node_modules/
-            },
-            {
-                test: /^((?!\.global).)*\.less$/,
-                loader: ExtractTextPlugin.extract(
-                    'style-loader',
-                    'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-                    'less-loader'
-                ),
+                test: /(\.less|\.css)$/,
+                loader: ExtractTextPlugin.extract('style', 'css!postcss!less'),
                 exclude: /node_modules/
             }
         ]

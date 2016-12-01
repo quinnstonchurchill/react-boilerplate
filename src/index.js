@@ -8,6 +8,8 @@ import reducers from './reducers'
 import routes from './routes'
 import configureStore from './store'
 
+import './styles/index'
+
 const store = configureStore()
 const history = syncHistoryWithStore(hashHistory, store)
 
